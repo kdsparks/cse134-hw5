@@ -29,7 +29,7 @@ const funFactControl = document.createElement('button');
 funFactControl.textContent = 'Get new fact!';
 funFact.appendChild(funFactControl);
 
-document.addEventListener('click', () => {
+funFactControl.addEventListener('click', () => {
     funFactIndex = ++funFactIndex % funFactList.length;
     funFactItem.textContent = funFactList[funFactIndex];
     funFactStatus.textContent = funFactStatusList[funFactIndex];
