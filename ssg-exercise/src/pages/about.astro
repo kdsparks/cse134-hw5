@@ -1,0 +1,91 @@
+---
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const pageTitle = "About Page";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About Me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <header>
+      <a href="/" rel="home">
+        Home
+      </a>
+      <nav>
+        <ul>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="now.html">Now</a>
+          </li>
+          <li>
+            <a href="making.html">Making</a>
+          </li>
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+          <li>
+            <a href="form-no-js.html">No-JS Form</a>
+          </li>
+          <li>
+            <a href="form-with-js.html">JS Form</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>About me</h1>
+      <section>
+        <h2>Cadie Sparks</h2>
+        <ipa>/keɪɾi spɑɹks/</ipa>
+        <p>
+          Hello! My name is Cadie and I'm a computer science student at UC San
+          Diego. I like figuring out how things work and seeing what I can build
+          of my own.
+        </p>
+      </section>
+      <section>
+        <p>
+          My recent projects involve software, electronics, or some combination
+          of the two. I enjoy{" "}
+          <em>bridging the gap between software and hardware</em> to engage with
+          and explore the world around me. Particularly, I'm interested in{" "}
+          <strong>
+            wireless communication, space and environmental technology, and
+            conservation
+          </strong>{" "}
+          &mdash; and how I can bring the software engineering and web
+          development skills I've been learning to these domains.
+        </p>
+      </section>
+      <section>
+        <p>
+          When I'm away from my computer I'm a ballroom dancer, a musician, a
+          linguist, and a fan of storytelling in various forms. (Though I am
+          often these things when I'm on the computer as well.) I think a lot
+          about many things, and surely many of them will find a home somewhere
+          on this site.
+        </p>
+      </section>
+      <section>
+        <p>
+          This site is my home base on the web: a place to share what I've been
+          working on and what I've stopped to pick up on the way. Some pages
+          will be a work in progress, documenting things I've tried, lessons
+          I've learned, and what I'm still figuring out. Other pages will leave
+          space for others' work that has left an impression on me. My hope for
+          this site is that it continues to grow as I do.
+        </p>
+        <p>Thanks for stopping by!</p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

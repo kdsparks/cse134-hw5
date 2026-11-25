@@ -1,0 +1,168 @@
+@layer reset, tokens, base, layout;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body { 
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer tokens {
+  :root {
+    --text: hsl(160, 69%, 10%);
+    --surface: hsl(60, 22%, 96%);
+    --accent-dark: hsl(160, 53%, 21%);
+    --accent-light: hsla(161, 21%, 64%, 0.5);
+    --accent-two-dark: hsl(25, 77%, 10%);
+    --accent-two-light: hsla(25, 43%, 65%, 0.4);
+    --error: hsl(0, 74%, 64%);
+    --correct: hsl(126, 32%, 58%);
+    --highlight: hsl(60, 100%, 88%);
+    --small-space: 0.5rem;
+    --medium-space: 1rem;
+    --large-space: 5rem;
+    --thin-stroke: 1px;
+    --regular-stroke: 2px;
+    --thick-stroke: 4px;
+    --radius: 4px;
+    --measure: 65ch;
+  }
+}
+
+@layer base {
+  body {
+    color-scheme: light dark;
+    font: 1.2rem/1.5 "avenir next", sans-serif;
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  :is(h1, h2) { line-height: 1.2; text-wrap: balance; }
+
+  h1 {
+    font-size: 4rem;
+    font-style: italic;
+  }
+
+  a { color: var(--accent-dark); }
+
+  a:hover {
+    color: var(--accent-two-dark);
+    background-color: var(--accent-light);
+  }
+
+  a:focus {
+    color: var(--accent-two-dark);
+    background-color: var(--accent-light);
+  }
+
+  label {
+    padding: var(--small-space);
+  }
+
+  input {
+    padding: var(--small-space);
+    background-color: var(--surface);
+    color: var(--text);
+    border-style: solid;
+    border-radius: var(--radius);
+  }
+
+  input:required {
+    background-color: var(--highlight);
+  }
+  
+  input:user-invalid {
+    border-color: var(--error);
+  }
+
+  input:user-valid {
+    border-color: var(--correct);
+  }
+
+  textarea {
+    background-color: var(--surface);
+    border-width: var(--regular-stroke);
+    border-radius: var(--radius);
+  }
+  
+  textarea:required {
+    background-color: var(--highlight);
+    color: var(--text);
+  }
+  
+  textarea:user-invalid {
+    border-color: var(--error);
+  }
+
+  textarea:user-valid {
+    border-color: var(--correct);
+  }
+
+  button {
+    padding: var(--small-space);
+    background-color: var(--accent-two-light);
+    color: var(--text);
+  }
+}
+
+@layer layout {
+  body {
+    margin: var(--medium-space);
+  }
+
+  /* Selects header, main, and footer elements that are children of body */
+  body > :is(header, main, footer) {
+    max-inline-size: var(--measure);
+    margin-inline: auto;
+    padding-inline: var(--medium-space);
+  }
+
+  /* Selects ul's that are descendants of nav's that are descendants of headers */
+  header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--medium-space);
+    list-style: none;
+  }
+
+  blockquote {
+    margin-inline: 0;
+    padding-inline-start: var(--medium-space);
+    border-inline-start: 0.25em solid var(--accent-dark);
+  }
+
+  footer {
+    margin-block-start: var(--large-space);
+  }
+
+  footer nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--medium-space);
+    list-style: none;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: var(--medium-space);
+  }
+
+  button {
+    width: fit-content;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @layer base {
+    a { transition: color 0.2s; }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
