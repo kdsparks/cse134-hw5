@@ -17,9 +17,6 @@ class FunFact extends HTMLElement {
 
 customElements.define('fun-fact', FunFact);
 
-const funFactStatusList = ['That\'s pretty fun!', 'I think we can do funner.', 'The funnest fact there is.'];
-let funFactIndex = 0;
-
 const funFact = document.querySelector('fun-fact');
 
 const funFactHeading = document.createElement('h2');
@@ -36,7 +33,7 @@ funFactExpansion.setAttribute('hidden', 'hidden');
 funFact.appendChild(funFactExpansion);
 
 const funFactStatus = document.createElement('p');
-funFactStatus.textContent = funFactStatusList[funFactIndex];
+funFactStatus.setAttribute('role', 'status');
 funFactStatus.style.fontStyle = 'italic';
 funFact.appendChild(funFactStatus);
 
@@ -45,9 +42,25 @@ funFactControl.textContent = 'Tell me a fun fact';
 funFact.appendChild(funFactControl);
 
 funFactControl.addEventListener('click', async () => {
-    funFactIndex = ++funFactIndex % funFactStatusList.length;
-    funFactItem.textContent = await loadRandomFact();
-    funFactStatus.textContent = funFactStatusList[funFactIndex];
+    funFactControl.setAttribute('disabled', 'disabled');
+    funFactStatus.textContent = 'Loading fun fact...';
+    await new Promise(requestAnimationFrame);
+
+    try {
+        const fact = await loadRandomFact();
+        if (!fact) {
+            throw new Error('Could not retrieve fact.');
+        }
+
+        funFactItem.textContent = fact;
+        funFactStatus.textContent = 'Fun fact loaded.';
+    }
+    catch (error) {
+        funFactStatus.textContent = 'Oops! We couldn\'t a fun enough fact, please try again.';
+    }
+    finally {
+        funFactControl.removeAttribute('disabled');
+    }
 });
 
 const toggle = document.getElementById('toggle');
@@ -74,5 +87,6 @@ async function loadRandomFact() {
     }
     catch (error) {
         console.error('Could not load the message.', error);
+        return null;
     } 
 }
