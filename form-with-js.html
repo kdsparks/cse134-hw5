@@ -17,7 +17,7 @@
                 <li><a href="making.html">Making</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="form-no-js.html">No-JS Form</a></li>
-                <li><a href="form-no-js.html">JS Form</a></li>
+                <li><a href="form-with-js.html">JS Form</a></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +34,11 @@
         <textarea name="comments" id="comments" placeholder="I'd like to hire you..." required minlength="10" maxlength="1000" rows="5"></textarea>
         <label for="possible_bot"></label>
         <input type="hidden" name="possible_bot" id="possible_bot" value="true">
-        <error-message id="error_msg"></error-message>
+        <error-message id="error_msg">
+            <p id="name_error"></p>
+            <p id="email_error"></p>
+            <p id="comments_error"></p>
+        </error-message>
         <info-message id="info_msg"></info-message>
         <button type="submit">Send Message</button>
     </form>
