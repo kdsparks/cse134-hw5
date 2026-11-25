@@ -17,9 +17,7 @@ class FunFact extends HTMLElement {
 
 customElements.define('fun-fact', FunFact);
 
-const funFactList = ['Wallace\'s flying frog has large webbing that lets it glide from tree to tree.', 'After an octopus lays eggs, she stops eating and dies in an act of self-sacrifice for the offspring.', 'Chimpanzees and vervet monkeys have been known to steal alcholic beverages.'];
 const funFactStatusList = ['That\'s pretty fun!', 'I think we can do funner.', 'The funnest fact there is.'];
-const funFactExpansionList = ['Rhacophorus nigropalmatus', 'Octopus vulgaris', 'Pan troglodytes, Chlorocebus pygerythrus'];
 let funFactIndex = 0;
 
 const funFact = document.querySelector('fun-fact');
@@ -29,11 +27,12 @@ funFactHeading.textContent = 'Fun Facts!';
 funFact.appendChild(funFactHeading);
 
 const funFactItem = document.createElement('p');
-funFactItem.textContent = funFactList[funFactIndex];
+funFactItem.textContent = await loadRandomFact();
 funFact.appendChild(funFactItem);
 
 const funFactExpansion = document.createElement('p');
-funFactExpansion.textContent = 'Scientific name: ' + funFactExpansionList[funFactIndex];
+funFactExpansion.textContent = 'Source: https://www.djtech.net/humor/shorty_useless_facts.htm';
+funFactExpansion.setAttribute('hidden', 'hidden');
 funFact.appendChild(funFactExpansion);
 
 const funFactStatus = document.createElement('p');
@@ -42,14 +41,13 @@ funFactStatus.style.fontStyle = 'italic';
 funFact.appendChild(funFactStatus);
 
 const funFactControl = document.createElement('button');
-funFactControl.textContent = 'Get new fact!';
+funFactControl.textContent = 'Tell me a fun fact';
 funFact.appendChild(funFactControl);
 
-funFactControl.addEventListener('click', () => {
-    funFactIndex = ++funFactIndex % funFactList.length;
-    funFactItem.textContent = funFactList[funFactIndex];
+funFactControl.addEventListener('click', async () => {
+    funFactIndex = ++funFactIndex % funFactStatusList.length;
+    funFactItem.textContent = await loadRandomFact();
     funFactStatus.textContent = funFactStatusList[funFactIndex];
-    funFactExpansion.textContent = 'Scientific name: ' + funFactExpansionList[funFactIndex];
 });
 
 const toggle = document.getElementById('toggle');
@@ -57,3 +55,24 @@ const toggle = document.getElementById('toggle');
 toggle.addEventListener('click', () => {
     funFact.toggleAttribute('compact');
 });
+
+async function loadRandomFact() {
+    try {
+        const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random');
+
+        if (!response.ok) {
+            throw new Error(`HTTP status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if(typeof data?.text !== 'string') {
+            throw new Error('Expected a fact in the response.');
+        }
+
+        return data.text;
+    }
+    catch (error) {
+        console.error('Could not load the message.', error);
+    } 
+}
