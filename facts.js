@@ -38,15 +38,15 @@ funFactPanel.appendChild(funFactExpansion);
 try {
     const funFactDisplayMode = localStorage.getItem('hw5-fun-fact-mode');
     if (funFactDisplayMode === 'compact') {
-        funFact.setAttribute('compact', 'compact');
+        funFact.setAttribute('compact', '');
     }
     else {
         funFact.removeAttribute('compact');
     }
 }
 catch (error) {
-    console.log('Could not retrieve fun fact compact/expanded preference from localStorage:', error);
-    funFact.setAttribute('compact', 'compact');
+    console.log('Could not retrieve fun fact display preference from localStorage:', error);
+    funFact.setAttribute('compact', '');
 }
 
 const toggle = document.getElementById('toggle');
