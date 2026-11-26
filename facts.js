@@ -35,6 +35,17 @@ const funFactExpansion = document.createElement('p');
 funFactExpansion.textContent = 'Source: https://www.djtech.net/humor/shorty_useless_facts.htm';
 funFactPanel.appendChild(funFactExpansion);
 
+const toggle = document.getElementById('toggle');
+
+function updateToggleLabel() {
+    if (funFact.hasAttribute('compact')) {
+        toggle.textContent = 'Show source';
+    }
+    else {
+        toggle.textContent = 'Hide source';
+    }
+}
+
 try {
     const funFactDisplayMode = localStorage.getItem('hw5-fun-fact-mode');
     if (funFactDisplayMode === 'compact') {
@@ -49,10 +60,12 @@ catch (error) {
     funFact.setAttribute('compact', '');
 }
 
-const toggle = document.getElementById('toggle');
+updateToggleLabel();
 
 toggle.addEventListener('click', () => {
     funFact.toggleAttribute('compact');
+
+    updateToggleLabel();
 
     try {
         if (funFact.hasAttribute('compact')) {
