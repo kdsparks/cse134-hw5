@@ -116,14 +116,14 @@
   }
 
   fun-fact {
-    display: block;
     --fact-background-color: var(--text-background, hsla(161, 21%, 64%, 0.5));
     --fact-border-color: var(--text-accent-two, hsl(25, 77%, 10%));
   }
 
-  fun-fact .panel {
-    background-color: var(--fact-background-color, gray);
-    border: var(--regular-stroke) solid var(--fact-border-color, orange);
+  .panel {
+    display: block;
+    background-color: var(--fact-background-color, hsla(161, 21%, 64%, 0.5));
+    border: var(--regular-stroke) solid var(--fact-border-color, hsl(25, 77%, 10%));
     padding: var(--medium-space);
     margin: var(--medium-space);
   }
