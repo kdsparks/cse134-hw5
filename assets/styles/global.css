@@ -15,7 +15,7 @@
     --text-accent: hsl(160, 53%, 21%);
     --text-background: hsla(161, 21%, 64%, 0.5);
     --text-accent-two: hsl(25, 77%, 10%);
-    --button: hsla(25, 43%, 65%, 0.4);
+    --button: hsl(25, 47%, 78%);
     --error: hsl(0, 74%, 64%);
     --correct: hsl(126, 32%, 58%);
     --highlight: hsl(60, 100%, 88%);
@@ -113,6 +113,14 @@
     padding: var(--small-space);
     background-color: var(--button);
     color: var(--text);
+  }
+
+  fun-fact {
+    display: block;
+    background-color: var(--text-background, hsla(161, 21%, 64%, 0.5));
+    border: var(--regular-stroke) solid var(--text-accent-two, hsl(25, 77%, 10%));
+    padding: var(--medium-space);
+    margin: var(--medium-space);
   }
 }
 
