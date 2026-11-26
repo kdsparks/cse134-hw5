@@ -6,7 +6,7 @@ class FunFact extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (funFact.hasAttribute('compact')) {
+        if (this.hasAttribute('compact')) {
             funFactExpansion.setAttribute('hidden', 'hidden');
         }
         else {
@@ -48,11 +48,11 @@ function updateToggleLabel() {
 
 try {
     const funFactDisplayMode = localStorage.getItem('hw5-fun-fact-mode');
-    if (funFactDisplayMode === 'compact') {
-        funFact.setAttribute('compact', '');
+    if (funFactDisplayMode === 'expanded') {
+        funFact.removeAttribute('compact');
     }
     else {
-        funFact.removeAttribute('compact');
+        funFact.setAttribute('compact', '');
     }
 }
 catch (error) {
