@@ -1,15 +1,5 @@
 const themeToggle = document.querySelector('theme-toggle');
 
-let savedTheme;
-try {
-    savedTheme = localStorage.getItem('theme');
-}
-catch (error) {
-    console.log('Could not retrieve theme preference from localStorage:', error);
-}
-const loadedTheme = savedTheme || 'light';
-document.documentElement.dataset.theme = loadedTheme;
-
 themeToggle.addEventListener('click', () => {
     const oldTheme = document.documentElement.dataset.theme;
     let newTheme;

@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>Cadie on the Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        try {
+            document.documentElement.dataset.theme = localStorage.getItem('theme');
+        }
+        catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
     <link rel="stylesheet" href="assets/styles/global.css">
-    <script defer type="module" src="theme.js"></script>
+    <script defer type="module" src="script.js"></script>
     <script defer type="module" src="facts.js"></script>
 </head>
 <body>
