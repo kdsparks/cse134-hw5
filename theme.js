@@ -1,13 +1,10 @@
-let theme = 'light';
-
 const themeToggle = document.querySelector('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
-    if (theme === 'light') {
-        theme = 'dark';
+    if (document.documentElement.dataset.theme === 'light') {
+        document.documentElement.dataset.theme = 'dark';
     }
     else {
-        theme = 'light';
+        document.documentElement.dataset.theme = 'light';
     }
-    console.log(theme);
 });

@@ -12,10 +12,10 @@
   :root {
     --text: hsl(160, 69%, 10%);
     --surface: hsl(60, 22%, 96%);
-    --accent-dark: hsl(160, 53%, 21%);
-    --accent-light: hsla(161, 21%, 64%, 0.5);
-    --accent-two-dark: hsl(25, 77%, 10%);
-    --accent-two-light: hsla(25, 43%, 65%, 0.4);
+    --text-accent: hsl(160, 53%, 21%);
+    --text-background: hsla(161, 21%, 64%, 0.5);
+    --text-accent-two: hsl(25, 77%, 10%);
+    --button: hsla(25, 43%, 65%, 0.4);
     --error: hsl(0, 74%, 64%);
     --correct: hsl(126, 32%, 58%);
     --highlight: hsl(60, 100%, 88%);
@@ -27,6 +27,15 @@
     --thick-stroke: 4px;
     --radius: 4px;
     --measure: 65ch;
+  }
+
+  [data-theme="dark"] {
+    --text: hsl(60, 22%, 96%);
+    --surface: hsl(158, 82%, 6%);
+    --text-accent: hsl(25, 88%, 83%);
+    --text-background: hsl(158, 65%, 15%);
+    --text-accent-two: hsl(24, 100%, 91%);
+    --button: hsla(25, 96%, 72%, 0.4);
   }
 }
 
@@ -45,16 +54,16 @@
     font-style: italic;
   }
 
-  a { color: var(--accent-dark); }
+  a { color: var(--text-accent); }
 
   a:hover {
-    color: var(--accent-two-dark);
-    background-color: var(--accent-light);
+    color: var(--text-accent-two);
+    background-color: var(--text-background);
   }
 
   a:focus {
-    color: var(--accent-two-dark);
-    background-color: var(--accent-light);
+    color: var(--text-accent-two);
+    background-color: var(--text-background);
   }
 
   label {
@@ -102,7 +111,7 @@
 
   button {
     padding: var(--small-space);
-    background-color: var(--accent-two-light);
+    background-color: var(--button);
     color: var(--text);
   }
 }
@@ -130,7 +139,6 @@
   blockquote {
     margin-inline: 0;
     padding-inline-start: var(--medium-space);
-    border-inline-start: 0.25em solid var(--accent-dark);
   }
 
   footer {
