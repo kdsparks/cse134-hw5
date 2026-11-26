@@ -29,8 +29,39 @@ funFact.appendChild(funFactItem);
 
 const funFactExpansion = document.createElement('p');
 funFactExpansion.textContent = 'Source: https://www.djtech.net/humor/shorty_useless_facts.htm';
-funFactExpansion.setAttribute('hidden', 'hidden');
 funFact.appendChild(funFactExpansion);
+
+try {
+    const funFactDisplayMode = localStorage.getItem('hw5-fun-fact-mode');
+    if (funFactDisplayMode === 'compact') {
+        funFact.setAttribute('compact', 'compact');
+    }
+    else {
+        funFact.removeAttribute('compact');
+    }
+}
+catch (error) {
+    console.log('Could not retrieve fun fact compact/expanded preference from localStorage:', error);
+    funFact.setAttribute('compact', 'compact');
+}
+
+const toggle = document.getElementById('toggle');
+
+toggle.addEventListener('click', () => {
+    funFact.toggleAttribute('compact');
+
+    try {
+        if (funFact.hasAttribute('compact')) {
+            localStorage.setItem('hw5-fun-fact-mode', 'compact');
+        }
+        else {
+            localStorage.setItem('hw5-fun-fact-mode', 'expanded');
+        }
+    }
+    catch (error) {
+        console.log('Could not save fun fact compact/expanded preference to localStorage:', error);
+    }
+});
 
 const funFactStatus = document.createElement('p');
 funFactStatus.setAttribute('role', 'status');
@@ -61,12 +92,6 @@ funFactControl.addEventListener('click', async () => {
     finally {
         funFactControl.removeAttribute('disabled');
     }
-});
-
-const toggle = document.getElementById('toggle');
-
-toggle.addEventListener('click', () => {
-    funFact.toggleAttribute('compact');
 });
 
 async function loadRandomFact() {
