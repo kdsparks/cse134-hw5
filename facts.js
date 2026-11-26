@@ -19,17 +19,21 @@ customElements.define('fun-fact', FunFact);
 
 const funFact = document.querySelector('fun-fact');
 
+const funFactPanel = document.createElement('section');
+funFactPanel.classList.add('panel');
+funFact.appendChild(funFactPanel);
+
 const funFactHeading = document.createElement('h2');
 funFactHeading.textContent = 'Fun Facts!';
-funFact.appendChild(funFactHeading);
+funFactPanel.appendChild(funFactHeading);
 
 const funFactItem = document.createElement('p');
 funFactItem.textContent = await loadRandomFact();
-funFact.appendChild(funFactItem);
+funFactPanel.appendChild(funFactItem);
 
 const funFactExpansion = document.createElement('p');
 funFactExpansion.textContent = 'Source: https://www.djtech.net/humor/shorty_useless_facts.htm';
-funFact.appendChild(funFactExpansion);
+funFactPanel.appendChild(funFactExpansion);
 
 try {
     const funFactDisplayMode = localStorage.getItem('hw5-fun-fact-mode');
@@ -66,11 +70,11 @@ toggle.addEventListener('click', () => {
 const funFactStatus = document.createElement('p');
 funFactStatus.setAttribute('role', 'status');
 funFactStatus.style.fontStyle = 'italic';
-funFact.appendChild(funFactStatus);
+funFactPanel.appendChild(funFactStatus);
 
 const funFactControl = document.createElement('button');
 funFactControl.textContent = 'Tell me a fun fact';
-funFact.appendChild(funFactControl);
+funFactPanel.appendChild(funFactControl);
 
 funFactControl.addEventListener('click', async () => {
     funFactControl.setAttribute('disabled', 'disabled');
